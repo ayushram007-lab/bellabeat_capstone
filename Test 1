@@ -1,0 +1,893 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={BellaBeat Capstone Project},
+  pdfauthor={Ayush Ram},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{BellaBeat Capstone Project}
+\author{Ayush Ram}
+\date{2025-11-17}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Introduction}\label{introduction}
+
+This R Markdown document presents the Bellabeat data analysis case study
+through the Google Data Analysis Course. In this document, we will
+explore the business task that is proposed by Bellabeat, a high-tech
+manufacturer of health products for women. Bellabeats aims to increase
+their global presence in the smart device market by understanding user
+behaviour that can guide product strategies and marketing decisions.
+
+Urška Sršen, cofounder and Chief Creative Officer of Bellabeat, believes
+that by analysing existing competitor data (Fitbit) and comparing it to
+Bellabeat's Time Product (a wellness watch that tracks users' activity,
+sleep, and stress), we can apply existing trends to the device,
+benefiting both Bellabeat and helping support their customers better.
+
+\subsubsection{Business Task}\label{business-task}
+
+Sršen has requested an analysis of smart device usage to gain insight
+into how customers use non-Bellabeat smart devices.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  What are some trends in smart device usage?
+\item
+  How could these trends apply to Bellabeat customers?
+\item
+  How could these trends help influence Bellabeat's marketing strategy?
+\end{enumerate}
+
+\subsubsection{Source}\label{source}
+
+The public dataset was provided by Sršen,
+\href{https://www.kaggle.com/datasets/arashnic/fitbit}{FitBit Fitness
+Tracker Data}. This dataset is the raw, unedited Kaggle dataset
+containing usage data from thirty Fitbit users.
+
+This document will focus mainly on:
+
+\begin{itemize}
+\item
+  \texttt{dailyActivity\_merged}
+\item
+  \texttt{sleepDay\_merged}
+\item
+  \texttt{dailySteps\_merged}
+\item
+  \texttt{weightLogInfo\_merged}
+\end{itemize}
+
+\subsubsection{Data Limitations}\label{data-limitations}
+
+The data itself is presented with a few limitations that are noteworthy.
+There are only 30 Fitbit users, which is a relatively small sample. The
+data itself does not represent Bellabeats users; this data is only an
+implication of what can be applied to them. Some data is self-reported,
+such as Weight, which can lead to inconsistencies or incorrect inputs.
+Missing some potential information, such as gender and age, which could
+have provided more insight. No context of what people do in bed before
+they are asleep.
+
+\subsubsection{Cleaning}\label{cleaning}
+
+For the Cleaning of the Data, Google Sheets was used before exporting
+the data into R Studio, as the data was not too large and the process
+would be quick and fast, leading to a faster response time to the
+Stakeholders' Business Task.
+
+The following is a breakdown of key cleaning that was conducted on
+Google Sheets.
+
+\begin{itemize}
+\item
+  Standardised date format from \texttt{MM/DD/YYYY} to
+  \texttt{YYYY/MM/DD}, allowing data to be consistent and universally
+  readable.
+\item
+  Applied filter to \texttt{sleepDay\_merged} Column D, Sort A-Z,
+  applied syntax in column G
+  \texttt{=IF(COUNTIFS(D:D,\ D2,\ E:E,\ E2)\ \textgreater{}\ 1,\ "Duplicate",\ "Unique")}.
+  Showing duplicates, Applied Data cleanup to remove the duplicates. 3
+  data entries removed from \texttt{sleepDay\_merged}. Other data
+  entries returned results of no duplicates.
+\item
+  Applied conditional formatting to see if any empty cells, removed
+  Column \texttt{Fat} from \texttt{weightLogInfo\_merged}, as there were
+  only 2 completed entries.
+\item
+  Removed non-representative days in \texttt{dailySteps\_merged} where
+  \texttt{StepTotal} \textless{} 50 steps, as these days were days of
+  inactivity of the Fitbit by users.
+\item
+  Applied \texttt{=IF(SUM(C2:M2)=0,\ "Non-Wear",\ "Valid")} to
+  \texttt{DailyActivity\_merged} to determine exactly which days had no
+  activity on the Fitbit, applied a filter to show \texttt{Non-Wear}
+  days, and removed all those days.
+\item
+  Verified column names and formats to ensure a seamless import into R.
+\item
+  Clean Data was then uploaded to R Studio with the same titles, and the
+  inclusion of ``Cleaned'' was added to each file.
+\end{itemize}
+
+\subsubsection{Download Packages}\label{download-packages}
+
+install.packages(``readr'')
+
+install.packages(``dplyr'')
+
+install.packages(``ggplot2'')
+
+install.packages(``tidyr'')
+
+\subsubsection{Loading Packages}\label{loading-packages}
+
+Loading the necessary packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'readr' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.5.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidyr' was built under R version 4.5.2
+\end{verbatim}
+
+\subsubsection{Loading Datasets}\label{loading-datasets}
+
+Renaming clean data to friendly, readable names.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Activity }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Fitabase\_Data\_cleaned/dailyActivity\_merged\_cleaned.csv"}\NormalTok{)}
+\NormalTok{Sleep }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Fitabase\_Data\_cleaned/sleepDay\_merged\_cleaned.csv"}\NormalTok{)}
+\NormalTok{Steps }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Fitabase\_Data\_cleaned/dailySteps\_merged\_cleaned.csv"}\NormalTok{)}
+\NormalTok{Weight }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"Fitabase\_Data\_cleaned/weightLogInfo\_merged\_cleaned.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+CSV files can be found in attachment files. All data can be found in
+``Fitabase\_Data\_cleaned'' in folder.
+
+\paragraph{Review data with head()}\label{review-data-with-head}
+
+Showing the first few rows of the datasets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Activity)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Id ActivityDate TotalSteps TotalDistance TrackerDistance
+## 1 1503960366   2016-04-12      13162          8.50            8.50
+## 2 1503960366   2016-04-13      10735          6.97            6.97
+## 3 1503960366   2016-04-14      10460          6.74            6.74
+## 4 1503960366   2016-04-15       9762          6.28            6.28
+## 5 1503960366   2016-04-16      12669          8.16            8.16
+## 6 1503960366   2016-04-17       9705          6.48            6.48
+##   LoggedActivitiesDistance VeryActiveDistance ModeratelyActiveDistance
+## 1                        0               1.88                     0.55
+## 2                        0               1.57                     0.69
+## 3                        0               2.44                     0.40
+## 4                        0               2.14                     1.26
+## 5                        0               2.71                     0.41
+## 6                        0               3.19                     0.78
+##   LightActiveDistance SedentaryActiveDistance VeryActiveMinutes
+## 1                6.06                       0                25
+## 2                4.71                       0                21
+## 3                3.91                       0                30
+## 4                2.83                       0                29
+## 5                5.04                       0                36
+## 6                2.51                       0                38
+##   FairlyActiveMinutes LightlyActiveMinutes SedentaryMinutes Calories
+## 1                  13                  328              728     1985
+## 2                  19                  217              776     1797
+## 3                  11                  181             1218     1776
+## 4                  34                  209              726     1745
+## 5                  10                  221              773     1863
+## 6                  20                  164              539     1728
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Id   SleepDay TotalSleepRecords TotalMinutesAsleep TotalTimeInBed
+## 1 1503960366 2016-04-12                 1                327            346
+## 2 1503960366 2016-04-13                 2                384            407
+## 3 1503960366 2016-04-15                 1                412            442
+## 4 1503960366 2016-04-16                 2                340            367
+## 5 1503960366 2016-04-17                 1                700            712
+## 6 1503960366 2016-04-19                 1                304            320
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Steps)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Id ActivityDay StepTotal
+## 1 4020332650  2016-04-18        62
+## 2 4020332650  2016-04-14       108
+## 3 8792009665  2016-04-21       144
+## 4 1927972279  2016-04-22       149
+## 5 1927972279  2016-04-25       152
+## 6 1844505072  2016-04-19       197
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(Weight)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Id       Date WeightKg WeightPounds   BMI IsManualReport        LogId
+## 1 1503960366 2016-05-02     52.6     115.9631 22.65           TRUE 1.462234e+12
+## 2 1503960366 2016-05-03     52.6     115.9631 22.65           TRUE 1.462320e+12
+## 3 1927972279 2016-04-13    133.5     294.3171 47.54          FALSE 1.460510e+12
+## 4 2873212765 2016-04-21     56.7     125.0021 21.45           TRUE 1.461283e+12
+## 5 2873212765 2016-05-12     57.3     126.3249 21.69           TRUE 1.463098e+12
+## 6 4319703577 2016-04-17     72.4     159.6147 27.45           TRUE 1.460938e+12
+\end{verbatim}
+
+\paragraph{Checking for any duplicates in
+datasets}\label{checking-for-any-duplicates-in-datasets}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{duplicated}\NormalTok{(Sleep))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{duplicated}\NormalTok{(Activity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{duplicated}\NormalTok{(Steps))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{duplicated}\NormalTok{(Weight))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+no duplicates found, data was cleaned prior.
+
+\paragraph{Check for missing values in each
+dataset}\label{check-for-missing-values-in-each-dataset}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(Activity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                       Id             ActivityDate               TotalSteps 
+##                        0                        0                        0 
+##            TotalDistance          TrackerDistance LoggedActivitiesDistance 
+##                        0                        0                        0 
+##       VeryActiveDistance ModeratelyActiveDistance      LightActiveDistance 
+##                        0                        0                        0 
+##  SedentaryActiveDistance        VeryActiveMinutes      FairlyActiveMinutes 
+##                        0                        0                        0 
+##     LightlyActiveMinutes         SedentaryMinutes                 Calories 
+##                        0                        0                        0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(Sleep))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Id           SleepDay  TotalSleepRecords TotalMinutesAsleep 
+##                  0                  0                  0                  0 
+##     TotalTimeInBed 
+##                  0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(Steps))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          Id ActivityDay   StepTotal 
+##           0           0           0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(Weight))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Id           Date       WeightKg   WeightPounds            BMI 
+##              0              0              0              0              0 
+## IsManualReport          LogId 
+##              0              0
+\end{verbatim}
+
+Activity \textless- Activity \%\textgreater\% select(-X.1)
+
+removed extra column ``X.1 which was an empty placeholder from CSV
+export.
+
+\paragraph{Inspecting how many unique ID are in the
+dataset}\label{inspecting-how-many-unique-id-are-in-the-dataset}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{n\_distinct}\NormalTok{(Activity}\SpecialCharTok{$}\NormalTok{Id)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{n\_distinct}\NormalTok{(Steps}\SpecialCharTok{$}\NormalTok{Id)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 33
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{n\_distinct}\NormalTok{(Sleep}\SpecialCharTok{$}\NormalTok{Id)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{n\_distinct}\NormalTok{(Weight}\SpecialCharTok{$}\NormalTok{Id)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+As shown, both Steps and Activity have the same number of distinct ID,
+due to them using the same data pool. Verify this, as both have ID
+1624580081 Total steps: 36019 on 2016-05-01. Other datasets have smaller
+sets as fewer people recorded their data for themselves.
+
+\subsection{Analysis of Data}\label{analysis-of-data}
+
+\paragraph{Summary of all data to note down key
+information}\label{summary-of-all-data-to-note-down-key-information}
+
+\subparagraph{Activity}\label{activity}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Activity }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(TotalSteps, TotalDistance, ModeratelyActiveDistance, VeryActiveMinutes, FairlyActiveMinutes, LightlyActiveMinutes, SedentaryMinutes, Calories) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    TotalSteps    TotalDistance    ModeratelyActiveDistance VeryActiveMinutes
+##  Min.   :    0   Min.   : 0.000   Min.   :0.0000           Min.   :  0.00   
+##  1st Qu.: 4910   1st Qu.: 3.367   1st Qu.:0.0000           1st Qu.:  0.00   
+##  Median : 8027   Median : 5.585   Median :0.3050           Median :  7.00   
+##  Mean   : 8310   Mean   : 5.973   Mean   :0.6175           Mean   : 23.03   
+##  3rd Qu.:11089   3rd Qu.: 7.895   3rd Qu.:0.8625           3rd Qu.: 35.00   
+##  Max.   :36019   Max.   :28.030   Max.   :6.4800           Max.   :210.00   
+##  FairlyActiveMinutes LightlyActiveMinutes SedentaryMinutes    Calories   
+##  Min.   :  0.00      Min.   :  0.0        Min.   :   0.0   Min.   :  52  
+##  1st Qu.:  0.00      1st Qu.:146.0        1st Qu.: 721.8   1st Qu.:1856  
+##  Median :  8.00      Median :208.0        Median :1021.0   Median :2220  
+##  Mean   : 14.76      Mean   :209.8        Mean   : 956.3   Mean   :2362  
+##  3rd Qu.: 21.00      3rd Qu.:272.0        3rd Qu.:1189.2   3rd Qu.:2832  
+##  Max.   :143.00      Max.   :518.0        Max.   :1440.0   Max.   :4900
+\end{verbatim}
+
+This dataset will focus on the activity levels of the Fitbit users. The
+data shows that users spend significantly more time in a sedentary state
+in comparison to the other activity levels. SedentaryMinutes has the
+largest Mean and Max values, indicating that most users are in states of
+inactivity for large periods. There is a large variance between steps,
+indicating that there is a lot of diversity in people's exercise habits.
+
+\subparagraph{Sleep}\label{sleep}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Sleep }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(TotalMinutesAsleep, TotalTimeInBed) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  TotalMinutesAsleep TotalTimeInBed 
+##  Min.   : 58.0      Min.   : 61.0  
+##  1st Qu.:361.0      1st Qu.:403.8  
+##  Median :432.5      Median :463.0  
+##  Mean   :419.2      Mean   :458.5  
+##  3rd Qu.:490.0      3rd Qu.:526.0  
+##  Max.   :796.0      Max.   :961.0
+\end{verbatim}
+
+This data shows that most people do spend time in bed before they go to
+sleep, the Mean value difference being 39.3 minutes. Meaning people are
+awake in bed for a period of time before falling asleep. There is not
+enough information provided to know what they are doing during this
+time.
+
+\subparagraph{Weight}\label{weight}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Weight }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{select}\NormalTok{(WeightKg, BMI) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     WeightKg           BMI       
+##  Min.   : 52.60   Min.   :21.45  
+##  1st Qu.: 61.40   1st Qu.:23.96  
+##  Median : 62.50   Median :24.39  
+##  Mean   : 72.04   Mean   :25.19  
+##  3rd Qu.: 85.05   3rd Qu.:25.56  
+##  Max.   :133.50   Max.   :47.54
+\end{verbatim}
+
+Information in the dataset is fairly self-explanatory. This shows the
+Weight (kg) and BMI of users who logged this information. The ``Fat''
+column was removed, as it had too many missing values to be meaningful.
+
+Dataset Steps was not included, as it was already in Activity Summary.
+
+\subsubsection{Visualisation of Activity, Sleep and
+Weight}\label{visualisation-of-activity-sleep-and-weight}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{ Activity) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ TotalSteps, }\AttributeTok{y =}\NormalTok{ Calories), }\AttributeTok{alpha=} \FloatTok{0.6}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ TotalSteps, }\AttributeTok{y =}\NormalTok{ Calories))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Total Steps Vs Calories Burned"}\NormalTok{,}
+    \AttributeTok{subtitle =} \StringTok{"With Trend Line"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Total Steps"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Calories Burned"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Bella_Beat_Capstone_Project_files/figure-latex/Activity Point-1.pdf}}
+This visualisation shows the relation between the TotalSteps and
+Calories burned in the dataset activity. There is a clear positive
+correlation, so it can be observed, those who have a higher total step
+count will see their expenditure of calories increase. But a very high
+step count shows diminishing returns as calorie burned begins to slow
+down. The slight curvature in the line further highlights this.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Activity, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{y =}\NormalTok{ VeryActiveMinutes)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_boxplot}\NormalTok{(}\AttributeTok{fill=} \StringTok{"salmon"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Boxplot of Very Active Minutes Per Day"}\NormalTok{,}
+        \AttributeTok{y=} \StringTok{"Very Active Minutes"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Bella_Beat_Capstone_Project_files/figure-latex/Activity boxplot-1.pdf}}
+
+This visualisation shows that most users spend relatively few minutes
+per day in highly active minutes; only a few users are highly active
+past 100 minutes, and activity past \textasciitilde180 minutes is not
+common.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Activity, }\FunctionTok{aes}\NormalTok{ (}\AttributeTok{x =}\NormalTok{ ActivityDate)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{ SedentaryMinutes, }\AttributeTok{fill =} \StringTok{"Sedentary"}\NormalTok{), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{ LightlyActiveMinutes, }\AttributeTok{fill =} \StringTok{"Light"}\NormalTok{), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{ FairlyActiveMinutes, }\AttributeTok{fill =} \StringTok{"Fair"}\NormalTok{), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{y=}\NormalTok{ VeryActiveMinutes, }\AttributeTok{fill =} \StringTok{"Very Active"}\NormalTok{), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title=} \StringTok{"Minutes of Activity per Days"}\NormalTok{,}
+    \AttributeTok{x=} \StringTok{"Date"}\NormalTok{,}
+    \AttributeTok{y=} \StringTok{"Minutes"}
+\NormalTok{  ) }\SpecialCharTok{+} 
+  \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"Sedentary"} \OtherTok{=} \StringTok{"lightblue"}\NormalTok{, }\StringTok{"Light"} \OtherTok{=} \StringTok{"lightyellow"}\NormalTok{, }\StringTok{"Fair"} \OtherTok{=} \StringTok{"lightgreen"}\NormalTok{, }\StringTok{"Very Active"} \OtherTok{=} \StringTok{"\#CC79A7"}\NormalTok{))}\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x=} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust=} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Bella_Beat_Capstone_Project_files/figure-latex/Activity Bar-1.pdf}}
+
+This shows the Minutes of Activity per day for the users; from this
+information, we can see that most of the users spend their time in a
+sedentary state, and while active, most users are in a light state of
+activity, followed by very active and finally fair activity. The reason
+that ``Fair'' is almost non-existent in the graph may be due to the way
+the types of data are considered. If we were to apply this to our
+Bellabeats product, we could note that most users like to be in a light
+state of activity, so reminders to simply get up and go for a walk
+instead of being in a sedentary state, or even a message that would show
+up when you are in a light state of activity or higher, stating that you
+are doing better than ``X'' amount of other users as motivation.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{ Sleep) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{mapping =} \FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ TotalTimeInBed, }\AttributeTok{y=}\NormalTok{ TotalMinutesAsleep), }\AttributeTok{alpha=} \FloatTok{0.6}\NormalTok{)}\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{ TotalTimeInBed, }\AttributeTok{y=}\NormalTok{ TotalMinutesAsleep))}\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title=}  \StringTok{"Total Minutes Asleep Vs Total Time In Bed"}\NormalTok{,}
+    \AttributeTok{x=} \StringTok{"Total Time In Bed"}\NormalTok{,}
+    \AttributeTok{y=} \StringTok{"Total Minutes Asleep"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Bella_Beat_Capstone_Project_files/figure-latex/Asleep Plot-1.pdf}}
+
+There is a positive correlation here between time spent in bed and time
+spent asleep. As expected, Those who spend more time in bed tend to
+sleep for longer. However, Most users don't fall asleep immediately.
+Spending only roughly 80\%-90\% of the time asleep. Suggesting there is
+a gap between going to bed and actually being asleep. This can be due to
+winding down or having difficulty falling asleep.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Weight, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ BMI)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{binwidth =} \DecValTok{1}\NormalTok{, }\AttributeTok{fill =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{colour =} \StringTok{"Black"}\NormalTok{) }\SpecialCharTok{+} 
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title=} \StringTok{"Distribution of BMI Between Users"}\NormalTok{,}
+    \AttributeTok{x=} \StringTok{"BMI"}\NormalTok{,}
+    \AttributeTok{y=} \StringTok{"Count of Users"}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Bella_Beat_Capstone_Project_files/figure-latex/BMI Distrbution-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(Weight}\SpecialCharTok{$}\NormalTok{BMI)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   21.45   23.96   24.39   25.19   25.56   47.54
+\end{verbatim}
+
+This graph shows the distribution of the BMI among the users. The spread
+here indicates that most users fall between 20 to 30, BMI verified by
+the summary below the table, which shows a Mean of 25.19 BMI. With
+anything in between 18.5 to 24.9 BMI being considered normal weight,
+whereas 25.0-29.9 BMI being overweight. There is a small population that
+falls in the overweight division, with the Max being 47.54 BMI.
+
+\subsubsection{Comparing Datasets}\label{comparing-datasets}
+
+\paragraph{Test correlation of Sleep Vs
+Weight}\label{test-correlation-of-sleep-vs-weight}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Sleep\_Weight }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(Sleep, Weight, }\AttributeTok{by.x =} \FunctionTok{c}\NormalTok{(}\StringTok{"Id"}\NormalTok{, }\StringTok{"SleepDay"}\NormalTok{), }\AttributeTok{by.y =} \FunctionTok{c}\NormalTok{(}\StringTok{"Id"}\NormalTok{, }\StringTok{"Date"}\NormalTok{))}
+
+\FunctionTok{cor}\NormalTok{(Sleep\_Weight}\SpecialCharTok{$}\NormalTok{TotalMinutesAsleep, Sleep\_Weight}\SpecialCharTok{$}\NormalTok{WeightKg, }\AttributeTok{use =} \StringTok{"complete.obs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.03348514
+\end{verbatim}
+
+With a correlation of 0.033, there is little to no relationship between
+these two variables. There will be no further investigation of this.
+
+\paragraph{Test correlation of Steps Vs
+Sleep}\label{test-correlation-of-steps-vs-sleep}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Steps\_Sleep }\OtherTok{\textless{}{-}} \FunctionTok{merge}\NormalTok{(Steps, Sleep, }\AttributeTok{by.x =}\FunctionTok{c}\NormalTok{(}\StringTok{"Id"}\NormalTok{, }\StringTok{"ActivityDay"}\NormalTok{), }\AttributeTok{by.y =} \FunctionTok{c}\NormalTok{(}\StringTok{"Id"}\NormalTok{, }\StringTok{"SleepDay"}\NormalTok{))}
+
+\FunctionTok{cor}\NormalTok{(Steps\_Sleep}\SpecialCharTok{$}\NormalTok{StepTotal, Steps\_Sleep}\SpecialCharTok{$}\NormalTok{TotalMinutesAsleep, }\AttributeTok{use =} \StringTok{"complete.obs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.197921
+\end{verbatim}
+
+Cross-dataset relationship shows weak to no correlation, suggesting that
+user activity, sleep, and body weight are likely independent in the
+dataset.
+
+\subsubsection{Recommendations}\label{recommendations}
+
+From the information we can infer from this document, there are a lot of
+trends in smart device usage for BellaBeats to stand out from Fitbit and
+the rest of the competition.
+
+\begin{itemize}
+\tightlist
+\item
+  Encourage movement with motivating goals
+\end{itemize}
+
+Users who are moving more tend to burn more calories. BellaBeats can use
+this information and create in-app step goals, badges and rewards for
+activity across multiple days, such as an activity streak and
+milestones. Marketing campaigns can focus on the more movement, the more
+calories burned.
+
+\begin{itemize}
+\tightlist
+\item
+  Support low activity users with a gentle reminder
+\end{itemize}
+
+There are many users who stay in lower activity ranges (sedentary/low
+activity). The Time could introduce gentle reminders for less active
+users to encourage movement, and then give those who are doing better
+than others. A visual of the \% of how well they are doing against the
+population to drive competition and growth.
+
+\begin{itemize}
+\tightlist
+\item
+  Improve sleep awareness and the collection of that data
+\end{itemize}
+
+Users often spend more time in bed than actually being asleep, so we
+could allow users to turn on a gentle notification system, when users
+are detected as being in bed and still being awake, also due to this
+category having lower information than the other datasets, we could
+offer in-app benefits for wearing the BellaBeats Time to sleep to gather
+more data about this and be ahead of the competition in terms of
+knowledge and user understanding.
+
+\begin{itemize}
+\tightlist
+\item
+  Provide personalised data based on BMI
+\end{itemize}
+
+BMI in users are shown to be diverse and vary. This could open the door
+for personalised recommendations for users. We can ask users to include
+their weight/ BMI and make custom steps, etc. This can help position
+BellaBeats as a personalised platform.
+
+\begin{itemize}
+\tightlist
+\item
+  Avoid connections of meaningless datasets
+\end{itemize}
+
+Marketing can avoid trying to merge the different categories of Sleep,
+Weight and Activity. Treat them as individual data as there has been
+shown to have little to no correlation.
+
+\subsubsection{Summary}\label{summary}
+
+As shown in the analysis, there are some clear trends in smart device
+usage. Users are more active when they move around more throughout the
+day. Most people remain in a sedentary state for long periods, and most
+people stay in bed longer than they are actually sleeping. That, along
+with BMI and weight, varies and needs personalisation for users.
+
+Together, there are many opportunities for BellaBeats to stand out from
+the rest. To look at this data and go for a personalised, gentle,
+one-on-one approach and focus on deep and meaningful motivation can help
+users feel valued and more engaged with the BellaBeat product.
+
+\end{document}
