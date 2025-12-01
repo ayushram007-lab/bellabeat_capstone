@@ -14,6 +14,7 @@ View public dataset where data was sourced from [Kaggle FitBit Fitness Tracker D
 
 ## Posts
 View my [Kaggle Case Study](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone) - An interactive notebook version of the analysis.
+
 Attached are the `.RMD` and `.pdf` files attached to the GitHub repository that are included for offline viewing.
 
 ## Note
