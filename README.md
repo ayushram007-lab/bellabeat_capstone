@@ -20,5 +20,5 @@ Attached are the `.RMD` and `.pdf` files attached to the GitHub repository that 
 This project is a demonstration of my first end-to-end data analysis project following the six-step process
 This follows the six steps of the data analysis process: Ask, Prepare, Process, Analyse, Share and Act. This document just does not have them written in this terminology, as it helps others who are not familiar with this to follow along.
 
-[Back To Top](#-Google-Data-Analytics:-Bellabeat-Capstone)
+[Back To Top](##-Project-Overview)
 
