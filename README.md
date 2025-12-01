@@ -13,12 +13,21 @@ The programs I used included Google Sheets for data cleaning and RStudio for dat
 View public dataset where data was sourced from [Kaggle FitBit Fitness Tracker Data](https://www.kaggle.com/datasets/arashnic/fitbit).
 
 ## Posts
-View my [Kaggle Case Study](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone) - An interactive notebook version of the analysis.
+View my [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone) - An interactive notebook version of the analysis.
 
-Attached are the `.RMD` and `.pdf` files attached to the GitHub repository that are included for offline viewing.
+Attached are the `.Rmd` and `.pdf` files attached to the GitHub repository that are included for offline viewing.
 
 ## Note
 This project is a demonstration of my first end-to-end data analysis project following the six-step process
+
 This follows the six steps of the data analysis process: Ask, Prepare, Process, Analyse, Share and Act. This document just does not have them written in this terminology, as it helps others who are not familiar with this to follow along.
+
+In [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone), the dataset is loaded from the kaggle input folder: Activity <- read.csv("/kaggle/input/fitbase-data-cleaned/Fitabase_Data_cleaned/dailyActivity_merged_cleaned.csv")
+
+In the  `.Rmd` and `.pdf` files included in the repository, the dataset is loaded from local folders:
+Activity <- read.csv("Fitabase_Data_cleaned/dailyActivity_merged_cleaned.csv")
+
+To access local folders, please find them in the [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone)
+
 
 
