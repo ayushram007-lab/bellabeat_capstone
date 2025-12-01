@@ -4,8 +4,6 @@ author: "Ayush Ram"
 date: "2025-11-17"
 output:
   html_document: default
-  toc: true
-  toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -303,6 +301,7 @@ Marketing can avoid trying to merge the different categories of Sleep, Weight an
 
 ### Summary
 As shown in the analysis, there are some clear trends in smart device usage. Users are more active when they move around more throughout the day. Most people remain in a sedentary state for long periods, and most people stay in bed longer than they are actually sleeping. That, along with BMI and weight, varies and needs personalisation for users. 
+
 
 
 Together, there are many opportunities for BellaBeats to stand out from the rest. To look at this data and go for a personalised, gentle, one-on-one approach and focus on deep and meaningful motivation can help users feel valued and more engaged with the BellaBeat product. 
