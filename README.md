@@ -24,10 +24,10 @@ This follows the six steps of the data analysis process: Ask, Prepare, Process, 
 
 In [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone), the dataset is loaded from the kaggle input folder: Activity <- read.csv("/kaggle/input/fitbase-data-cleaned/Fitabase_Data_cleaned/dailyActivity_merged_cleaned.csv")
 
-In the  `.Rmd` and `.pdf` files included in the repository, the dataset is loaded from local folders:
+In the  `.Rmd` and `.pdf` files included in the repository, the dataset is loaded from local files:
 Activity <- read.csv("Fitabase_Data_cleaned/dailyActivity_merged_cleaned.csv")
 
-To access local folders, please find them in the [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone)
+To access local files, please find them in the [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone)
 
 
 
