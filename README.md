@@ -27,7 +27,7 @@ In [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-dat
 In the  `.Rmd` and `.pdf` files included in the repository, the dataset is loaded from local files:
 Activity <- read.csv("Fitabase_Data_cleaned/dailyActivity_merged_cleaned.csv")
 
-To access local files, please find them in the [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone)
+To access local files, please find them in the [Kaggle Notebook](https://www.kaggle.com/code/ayushram24/bellabeat-google-data-analytics-capstone) by selecting input [Fitbase_data_cleaned](https://www.kaggle.com/datasets/ayushram24/fitbase-data-cleaned) and downloading `.zip`
 
 
 
